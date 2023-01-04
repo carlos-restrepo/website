@@ -4,17 +4,18 @@
     <!-- Title -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-6">
-          <h3 class="big-heading">Mathematician and Programmer.</h3>
-          <div class="">
-            <button class="download-button btn btn-dark btn-lg" type="button"> <i class="fa-brands fa-apple"></i> Resume</button>
+        <div class="title-slide col-lg-6">
+          <h3 class="big-heading">Mathematician, Data Scientist.</h3>
+          <div class="guide-buttons">
+            <a href="/docs/CarlosRestrepoResume.pdf" download><button class="download-button btn btn-dark btn-lg" type="button">Download Resume</button></a>
+            <a href="/tutoring"><button class="download-button btn btn-outline-light btn-lg" type="button">Tutoring</button></a>
           </div>
-          <div class="">
-            <button class="download-button btn btn-outline-light btn-lg" type="button"> <i class="fa-brands fa-google-play"></i> Tutoring</button>
-          </div>
+          <!-- <div class="">
+
+          </div> -->
         </div>
         <div class="col-lg-6">
-          <img class="title-image" src="images/iphone6.png" alt="iphone-mockup">
+          <img class="title-image" src="images/profile.jpg" alt="iphone-mockup">
         </div>
       </div>
     </div>
@@ -25,25 +26,52 @@
 
 <!-- Features -->
 
-<section id="features">
-    <div class="">
-      <h2>About me</h2>
-      <p class="about">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<section id="about-me">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <img class='img-teaching' src="/images/teaching.png" alt="carlos-teaching">
+      </div>
+      <div class="col-lg-6">
+        <h2>About me</h2>
+        <p>My name is Carlos, I am originally from Colombia but have been in Canada most of my life. I studied Mathematics and Computer Science during my undergraduate studies at the University of Toronto Mississauga and recently completed my Masters Degree in Applied Mathematics at Ryerson University (now Toronto Metropolitan University) with a focus in Mathematical Logic. For the past few years I have been teaching Mathematics at the university level and I am looking to make a move into the Data Science field. In my personal time I enjoy improving at rock climbing knitting/crocheting new creations.</p>
+      </div>
     </div>
+  </div>
+</section>
 
+<section id="projects">
+  <div class="container-fluid">
+    <h2>Projects</h2>
+    <ul>
+      <a href="/capstone" class='project-link'>
+        <li>Finding a Location for a Tutoring Centre</li>
+          This was the capstone project for the IBM Data Science Professional Certificate Course. The purpose is to leverage publicly available data about schools in Ontario, as well as existing tutoring services, to determine where may be the best place to establish a tutoring centre. It was written in Python using Jupyter Notebooks. It uses common data analysis libraries such as numpy, pandas, matplotlib and scikit-learn to handle data, plot maps and cluster results. The project first shows the process done 'manually' within Mississauga and is then automated to handle an input of multiple city names and output the resulting map.
+      </a>
 
+    </ul>
+  </div>
 
 </section>
 
 
+
+
+
 <!-- Testimonials -->
 
-<section id="testimonials">
-  <div class="hiring">
-    <h2 class="cta-text">Looking to hire me?</h2>
-    <button class="cta-button-left btn btn-lg btn-light" type="button"> <i class="fa-brands fa-apple"></i> Resume</button>
-    <button class="cta-button-right btn btn-lg btn-dark" type="button"> <i class="fa-brands fa-google-play"></i> Tutoring</button>
+<section id="hire-me">
+  <div class="container-fluid">
+    <div class="hiring">
+      <h2 class="cta-text">Want to hire me?</h2>
+      <div class="guide-buttons">
+        <a href="/docs/CarlosRestrepoResume.pdf" download><button class="download-button btn btn-dark btn-lg" type="button">Download Resume</button></a>
+        <a href="/tutoring"><button class="download-button btn btn-outline-light btn-lg" type="button">Tutoring</button></a>
+      </div>
+    </div>
   </div>
+
+
 
 </section>
 

@@ -31,7 +31,7 @@ p{
 }
 
 .container-fluid{
-  padding: 3% 15% 2%;
+  padding: 3% 10% 2%;
 }
 
 
@@ -52,12 +52,6 @@ p{
 .top-tagline{
   margin: 100px 0;
 }
-/*
-.bottom-tagline{
-  margin-top: : 50px;
-} */
-
-
 
 
 
@@ -91,11 +85,8 @@ p{
 
 
 .title-image{
-  width: 40%;
-  margin: 0  40%;
-  /* transform: rotate(25deg);
-  position:absolute;
-  margin-left: 50px; */
+  width: 50%;
+  margin: 0  25%;
 }
 
 .sample-file{
@@ -103,20 +94,65 @@ p{
   margin: 0 50%;
 }
 
-/* @media (max-width: 1028px){
-
-  #title{
-    text-align: center;
-  }
-
-  .title-image{
-    position: static;
-    transform: none;
-    width: 50%;
-  }
 
 
-} */
+
+
+#about-me{
+  text-align: left;
+}
+
+
+
+
+.img-teaching{
+  width: 96%;
+  margin-right: 40px;
+}
+
+
+
+
+
+#projects{
+  background-color: #749F82;
+  color: white;
+}
+
+.project-link{
+  text-decoration: none;
+  color: white;
+}
+
+
+
+
+
+/* 749F82 */
+
+#hire-me{
+  background-color: #425F57;
+  color: white;
+}
+
+.guide-buttons{
+  margin: 0 150px;
+}
+
+.title-slide{
+  margin: 100px auto;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -136,19 +172,13 @@ p{
   color: white;
 }
 
-/* FEATURES */
-/*
-#features{
-  padding: 7% 15%;
-  text-align: center;
-  line-height: 2;
-  background-color: #fff;
-  position:relative;
-  z-index: 1;
-} */
 
-.about{
-  text-align: left;
+
+
+
+
+#contact{
+  padding: 7% 15%;
 }
 
 /*
@@ -166,9 +196,17 @@ p{
   padding: 0 6%;
 } */
 
-#contact{
+/* FEATURES */
+/*
+#features{
   padding: 7% 15%;
-}
+  text-align: center;
+  line-height: 2;
+  background-color: #fff;
+  position:relative;
+  z-index: 1;
+} */
+
 
 
 

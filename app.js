@@ -24,8 +24,8 @@ app.get("/", function(req, res){
   res.render('home');
 });
 
-app.get("/resume", function(req, res){
-  res.render('resume');
+app.get("/capstone", function(req, res){
+  res.sendFile(__dirname + "/capstone.html");
 });
 
 app.get("/tutoring", function(req, res){
