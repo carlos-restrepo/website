@@ -51,8 +51,8 @@ p{
 
 .top-tagline{
   margin: 100px 0;
+  font-weight: 500;
 }
-
 
 
 .navbar{
@@ -160,16 +160,24 @@ p{
 
 #schedule{
   background-color: #749F82;
-  color: white;
+  color: black;
 }
 
 .calendar{
   margin: 7% 15%;
 }
 
+.booking-button{
+  margin: 20px 0 0;
+}
+
+
+
+
+
 #sessions{
   background-color: #749F82;
-  color: white;
+  color: black;
 }
 
 
@@ -253,6 +261,7 @@ p{
   padding: 100px;
   text-align: left;
 }
+
 
 .contact-title{
   text-align: center
