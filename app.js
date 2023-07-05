@@ -7,6 +7,74 @@ const ejs = require("ejs");
 
 const app = express();
 
+
+
+//mongodb API setup
+
+const mongoose = require("mongoose");
+const _ = require("lodash");
+
+const user = 'carlos';
+const password = 'solrak301';
+
+
+const uri = "mongodb+srv://" + user + ":" + password + "@fruitsdb.rrchmxl.mongodb.net/?retryWrites=true&w=majority"
+
+mongoose.connect(uri, { useNewUrlParser: true});
+
+const bookingSchema = new mongoose.Schema({
+  bookingID: Number,
+  bookingDate: Date,
+  sessionID: Number,
+  comment: String
+});
+
+const courseSchema = new mongoose.Schema({
+  courseID:Number,
+  courseName: String,
+  university: String
+});
+
+
+const sessionSchema = new mongoose.Schema({
+  sessionID:Number,
+  date:Date,
+  startTime:Number,
+  endTime:Number,
+  studentID:Number,
+  tutorID:Number,
+  courseID:Number,
+  delivery:String
+});
+
+
+const studentSchema = new mongoose.Schema({
+  studentID:Number,
+  firstName:String,
+  lastName:String,
+  email:String
+});
+
+const tutorSchema = new mongoose.Schema({
+  tutorID:Number,
+  name:String,
+  email:String
+});
+
+
+const Booking = mongoose.model('Bookings', bookingSchema);
+
+
+const Course = mongoose.model('Course', courseSchema);
+
+const Session = mongoose.model('Session', sessionSchema);
+
+const Student = mongoose.model('Student', studentSchema);
+
+const Tutor = mongoose.model('Tutor', tutorSchema);
+
+// Calendar API set up
+
 const {google} = require('googleapis');
 require('dotenv').config();
 
@@ -84,23 +152,128 @@ const insertEvent = async (event) => {
 };
 
 
+
+
+
+// fname, lname, email){
+
+async function updateDatabase(form_data){
+
+  const found_student = await Student.findOne({email:form_data.email});
+
+  var studentID = 0;
+
+  if(found_student){
+    studentID = found_student.studentID;
+  }
+  else{
+
+    const studentCount = await Student.countDocuments({});
+    studentID = studentCount + 1;
+
+    const newStudent = Student({
+      studentID: studentID,
+      firstName: form_data.first_name,
+      lastName: form_data.last_name,
+      email: form_data.email
+    });
+
+    newStudent.save();
+  }
+
+  const found_course = await Course.findOne({courseName: form_data.course});
+
+  var courseID = 0;
+
+  if(found_course){
+    courseID = found_course.courseID;
+  }
+  else{
+    const courseCount = await Course.countDocuments({});
+    courseID = courseCount + 1;
+
+    const newCourse = Course({
+      courseID: courseID,
+      courseName: form_data.course,
+      university: form_data.university
+    });
+
+    newCourse.save();
+  }
+
+
+
+  const sessionCount = await Session.countDocuments({});
+  var sessionID = sessionCount + 1;
+  console.log(form_data.delivery);
+
+  const newSession = Session({
+    sessionID: sessionID,
+    date: form_data.date,
+    startTime: parseInt(form_data.start_time.split(':')[0]),
+    endTime: parseInt(form_data.end_time.split(':')[0]),
+    studentID: studentID,
+    tutorID: 1,
+    courseID: courseID,
+    delivery: form_data.delivery
+  });
+
+  newSession.save();
+
+  const bookingCount = await Booking.countDocuments({});
+  const bookingID = bookingCount + 1;
+
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = yyyy + '-' + mm + '-' + dd;
+
+  const newBooking = Booking({
+    bookingID: bookingID,
+    bookingDate: today,
+    sessionID: sessionID,
+    comment: form_data.comments
+  });
+
+  newBooking.save();
+}
+
+
 app.post("/tutoring/request", function(req,res){
-  var first_name = req.body.bookFirstName;
-  var last_name = req.body.bookLastName;
-  var email = req.body.bookEmail;
-  var date = req.body.bookDate;
-  var start_time = req.body.bookStart;
-  var end_time = req.body.bookEnd;
-  var delivery = req.body.bookDelivery;
-  var course = req.body.bookCourse;
-  var university = req.body.bookUniversity;
-  var comments = req.body.bookComments;
 
-  var split_date = date.split('-');
-  var split_start = start_time.split(':')
-  var split_end = end_time.split(':')
+  var d = document.getElementById('bookDelivery')
+  // console.log(d.options[d.selectedIndex].text);
+  console.log(d.options[d.selectedIndex].text);
 
-  console.log(first_name,email, date, start_time);
+
+  const form_data = {
+    first_name: req.body.bookFirstName,
+    last_name : req.body.bookLastName,
+    email : req.body.bookEmail,
+    date : req.body.bookDate,
+    start_time : req.body.bookStart,
+    end_time : req.body.bookEnd,
+    delivery : req.body.bookDelivery,
+    course : req.body.bookCourse,
+    university : req.body.bookUniversity,
+    comments : req.body.bookComments
+  }
+
+  // updateDatabase(form_data);
+
+
+
+
+
+
+
+
+
+  var split_date = form_data.date.split('-');
+  var split_start = form_data.start_time.split(':')
+  var split_end = form_data.end_time.split(':')
 
   // Email.send({
   //   Host : "smtp.elasticemail.com",
@@ -114,19 +287,17 @@ app.post("/tutoring/request", function(req,res){
   // message => alert(message)
   // );
 
-  res.redirect('/tutoring#schedule')
 
 
 
-  let startDateTime = split_date[0] + '-' + split_date[1] + '-' + split_date[2] + 'T' + split_start[0] + ':' + split_start[1] + ':00.000' + TIMEOFFSET;
+  let startDateTime = split_date[0] + '-' + split_date[1] + '-' + split_date[2] + 'T' + split_start[0] + ':00:00.000' + TIMEOFFSET;
 
-  console.log(startDateTime);
 
   // let dateTime = dateTimeForCalander();
 
   let startDate = new Date(Date.parse(startDateTime));;
 
-  let endDateTime = split_date[0] + '-' + split_date[1] + '-' + split_date[2] + 'T' + split_end[0] + ':' + split_end[1] + ':00.000' + TIMEOFFSET;
+  let endDateTime = split_date[0] + '-' + split_date[1] + '-' + split_date[2] + 'T' + split_end[0] + ':00:00.000' + TIMEOFFSET;
 
   let endDate = new Date(Date.parse(endDateTime));;
 
@@ -147,10 +318,16 @@ app.post("/tutoring/request", function(req,res){
   insertEvent(event)
       .then((res) => {
           console.log(res);
+          if( res == 1 ){
+            alert("Time requested successfully. Please wait for confirmation email.")
+          }
       })
       .catch((err) => {
           console.log(err);
       });
+
+
+  res.redirect('/tutoring#schedule')
 })
 
 // app.post("/", function(req, res){
@@ -172,7 +349,7 @@ app.post("/tutoring/request", function(req,res){
 
 
 
-
+const PORT = process.env.PORT || 3000;
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
