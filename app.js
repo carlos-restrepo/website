@@ -243,9 +243,9 @@ async function updateDatabase(form_data){
 
 app.post("/tutoring/request", function(req,res){
 
-  var d = document.getElementById('bookDelivery')
+  // var d = document.getElementById('bookDelivery')
   // console.log(d.options[d.selectedIndex].text);
-  console.log(d.options[d.selectedIndex].text);
+  // console.log(d.options[d.selectedIndex].text);
 
 
   const form_data = {
@@ -261,7 +261,7 @@ app.post("/tutoring/request", function(req,res){
     comments : req.body.bookComments
   }
 
-  // updateDatabase(form_data);
+  updateDatabase(form_data);
 
 
 
