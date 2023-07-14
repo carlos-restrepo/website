@@ -128,6 +128,10 @@ app.get("/tutoring", function(req, res){
   res.render('tutoring');
 });
 
+app.get("/resume", function(req, res){
+  res.render(__dirname + "/public/docs/CarlosRestrepoResume.pdf")
+});
+
 
 
 
@@ -152,10 +156,6 @@ const insertEvent = async (event) => {
 };
 
 
-
-
-
-// fname, lname, email){
 
 async function updateDatabase(form_data){
 
@@ -201,8 +201,6 @@ async function updateDatabase(form_data){
     newCourse.save();
   }
 
-
-
   const sessionCount = await Session.countDocuments({});
   var sessionID = sessionCount + 1;
   console.log(form_data.delivery);
@@ -240,7 +238,6 @@ async function updateDatabase(form_data){
   newBooking.save();
 }
 
-
 app.post("/tutoring/request", function(req,res){
 
   // var d = document.getElementById('bookDelivery')
@@ -263,37 +260,11 @@ app.post("/tutoring/request", function(req,res){
 
   updateDatabase(form_data);
 
-
-
-
-
-
-
-
-
   var split_date = form_data.date.split('-');
   var split_start = form_data.start_time.split(':')
   var split_end = form_data.end_time.split(':')
 
-  // Email.send({
-  //   Host : "smtp.elasticemail.com",
-  //   Username : "carlos.restrepo.tutoring@gmail.com",
-  //   Password : "B504688116700D66BE0B78EC4030781ACC8E",
-  //   To : 'carlos.restrepo.tutoring@gmail.com',
-  //   From : 'carlos.restrepo.tutoring@gmail.com',
-  //   Subject : "Booking form",
-  //   Body : 'body'
-  // }).then(
-  // message => alert(message)
-  // );
-
-
-
-
   let startDateTime = split_date[0] + '-' + split_date[1] + '-' + split_date[2] + 'T' + split_start[0] + ':00:00.000' + TIMEOFFSET;
-
-
-  // let dateTime = dateTimeForCalander();
 
   let startDate = new Date(Date.parse(startDateTime));;
 
@@ -330,55 +301,9 @@ app.post("/tutoring/request", function(req,res){
   res.redirect('/tutoring#schedule')
 })
 
-// app.post("/", function(req, res){
-//   const post = {
-//     title:req.body.newTitle,
-//     body:req.body.content,
-//     postLink: "/posts/" + _.lowerCase(req.body.newTitle)
-//   }
-//   posts.push(post);
-//   res.redirect("/");
-// });
-
-
-
-
-
-
-
-
-
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, function() {
   console.log("Server started on port 3000");
 });
-
-
-
-//
-// app.get("/about", function(req, res){
-//   res.render('about', {text: aboutContent, title:'About'});
-// });
-//
-// app.get("/contact", function(req, res){
-//   res.render('contact', {text: contactContent, title:'Contact'});
-// });
-//
-// app.get("/compose", function(req, res){
-//   res.render('compose');
-// });
-//
-// app.get("/posts/:postName", function(req, res){
-//   posts.forEach(function(post){
-//     console.log(_.lowerCase(post.title), _.lowerCase(req.params.postName));
-//     if(_.lowerCase(post.title) === _.lowerCase(req.params.postName)){
-//       console.log('Match Found');
-//       res.render('about', {text: post.body, title:post.title})
-//     }
-//
-//   });
-//   console.log('404');
-//
-// });
