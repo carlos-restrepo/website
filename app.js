@@ -290,7 +290,7 @@ app.post("/tutoring/request", function(req,res){
       .then((res) => {
           console.log(res);
           if( res == 1 ){
-            alert("Time requested successfully. Please wait for confirmation email.")
+            console.log("Event created.")
           }
       })
       .catch((err) => {

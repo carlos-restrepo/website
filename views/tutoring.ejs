@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;900&family=Ubuntu&display=swap" rel="stylesheet">
 
   <!-- jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -30,8 +30,11 @@
   <link rel="manifest" href="/images/favicon-prime/site.webmanifest">
 
   <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+
   <script>
     $(document).ready(function(){
+
       $("#firstSessionButton").click(function(){
         $('#bookComments').val('First session.');
       });
@@ -67,7 +70,6 @@
           + "," + document.getElementById('bookUniversity').value
           + "," + document.getElementById('bookComments').value
         }).then(
-          message => alert(message)
         );
 
       });
@@ -84,31 +86,30 @@
           + "," + document.getElementById('contactTextArea').value
         }).then(
           // message => alert(message)
-          alert('sent contact')
+
         );
 
       });
 
-      // function sendEmail(subject, body){
-      //     alert(body);
-      //     Email.send({
-      //       Host : "smtp.elasticemail.com",
-      //       Username : "carlos.restrepo.tutoring@gmail.com",
-      //       Password : "B504688116700D66BE0B78EC4030781ACC8E",
-      //       To : 'carlos.restrepo.tutoring@gmail.com',
-      //       From : 'carlos.restrepo.tutoring@gmail.com',
-      //       Subject : subject,
-      //       Body : body
-      //   }).then(
-      //     message => alert(message)
-      //   );
-      // }
-
-
     });
   </script>
-
+</head>
   <!--
+
+  // function sendEmail(subject, body){
+  //     alert(body);
+  //     Email.send({
+  //       Host : "smtp.elasticemail.com",
+  //       Username : "carlos.restrepo.tutoring@gmail.com",
+  //       Password : "B504688116700D66BE0B78EC4030781ACC8E",
+  //       To : 'carlos.restrepo.tutoring@gmail.com',
+  //       From : 'carlos.restrepo.tutoring@gmail.com',
+  //       Subject : subject,
+  //       Body : body
+  //   }).then(
+  //     message => alert(message)
+  //   );
+  // }
   <script>
     function sendEmail(){
         Email.send({
@@ -139,8 +140,53 @@
 
 
 
-</head>
 
+<!-- <script>
+  $(document).ready(function(){
+    $("#firstSessionButton").click(function(){
+      $('#bookComments').val('First session.');
+    });
+
+    $("#singleSessionButton").click(function(){
+      $('#bookComments').val('');
+    });
+
+    $("#fourHourButton").click(function(){
+      $('#bookComments').val('Four Hour Deal.');
+    });
+
+    $("#semesterDealButton").click(function(){
+      $('#bookComments').val('Semester Deal.');
+    });
+
+    $('#requestBookingButton').click(function(){
+
+      console.log('trying to email');
+      Email.send({
+        Host : "smtp.elasticemail.com",
+        Username : "carlos.restrepo.tutoring@gmail.com",
+        Password : "B504688116700D66BE0B78EC4030781ACC8E",
+        To : 'carlos.restrepo.tutoring@gmail.com',
+        From : 'carlos.restrepo.tutoring@gmail.com',
+        Subject : "Booking Form",
+        Body : document.getElementById('bookFirstName').value
+        + "," + document.getElementById('bookLastName').value
+        + "," + document.getElementById('bookEmail').value
+        + "," + document.getElementById('bookDate').value
+        + "," + document.getElementById('bookStart').value
+        + "," + document.getElementById('bookEnd').value
+        + "," + document.getElementById('bookDelivery').value
+        + "," + document.getElementById('bookCourse').value
+        + "," + document.getElementById('bookUniversity').value
+        + "," + document.getElementById('bookComments').value
+      }).then(
+
+      );
+
+    });
+
+  });
+</script> -->
 
 
 
@@ -299,8 +345,6 @@
       <div class="row">
         <div class="col-lg-5">
           <h2>Book Now!</h2>
-          <h5>Between 9am-6pm: </h5>
-          <h5>$120 for two hours, $70 for one.</h5>
           <form action="/tutoring/request" method="post">
             <div class="row">
               <div class="form-group col-lg-6">
