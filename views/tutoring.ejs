@@ -277,8 +277,8 @@
             <h3>First Session</h3>
           </div>
           <div class="card-body d-flex flex-column">
-            <h3>$40/hr</h3>
-            <p>At least 48hr advance notice, $50/hr with short notice.</p>
+            <h3>$50/hr</h3>
+            <p>At least 48hr advance notice, $60/hr with short notice.</p>
             <a class="mt-auto" href="#schedule"><button class="btn btn-outline-dark btn-lg w-100 mt-auto" id="firstSessionButton" type="button">Book</button></a>
           </div>
         </div>
@@ -290,9 +290,9 @@
             <h3>Single Booking</h3>
           </div>
           <div class="card-body d-flex flex-column">
-            <h3>$120 for two hours.</h3>
-            <p>$70 for one hour.</p>
-            <p>At least 48hr advance notice, $130 for two and $80 one with short notice.</p>
+            <h3>$150 for two hours.</h3>
+            <p>$80 for one hour.</p>
+            <p>At least 48hr advance notice, $160 for two and $90 one with short notice.</p>
             <a class="mt-auto" href="#schedule"><button class="btn btn-dark btn-lg w-100 mt-auto" id="singleSessionButton" type="button">Book</button></a>
           </div>
         </div>
@@ -304,11 +304,11 @@
             <h3>Four Hour Deal</h3>
           </div>
           <div class="card-body d-flex flex-column">
-            <h3>$55 / hour</h3>
-            <p>$220 total</p>
+            <h3>$70/hr</h3>
+            <p>$280 total</p>
             <p>Time and date chosen at time of booking.</p>
             <p>Any changes to time and date must have at least 48hr advance notice and subject to availability.</p>
-            <p>$40 to book, $45/hr before the day of session.</p>
+            <p>$40 to book, $60/hr before the day of session.</p>
             <a class="mt-auto" href="#schedule"><button class="btn btn-dark btn-lg w-100 mt-auto" id="fourHourButton" type="button">Book</button></a>
           </div>
         </div>
@@ -321,11 +321,11 @@
             <h3>Rest of Semester Deal</h3>
           </div>
           <div class="card-body d-flex flex-column">
-            <h3>$50 / hour</h3>
+            <h3>$65/hr</h3>
             <p>Must book at least one hour per week until the end of the semester</p>
             <p>Time and date chosen at time of booking.</p>
             <p>Any changes to time and date must have at least 48hr advance notice and subject to availability.</p>
-            <p>$10/hr to book, $40/hr before the day of the session.</p>
+            <p>$10/hr to book, $55/hr before the day of the session.</p>
             <a class="mt-auto" href="#schedule"><button class="btn btn-dark btn-lg w-100 mt-auto" id="semesterDealButton" type="button">Book</button></a>
           </div>
         </div>
@@ -372,13 +372,35 @@
 
               <div class="col-lg-4">
                 <label for="bookStart">Start:</label>
-                <input type="time" class="form-control" id="bookStart" name="bookStart">
+                <select id="bookStart" class="form-select">
+                  <option value=9 selected>9am</option>
+                  <option value=10>10am</option>
+                  <option value=11>11am</option>
+                  <option value=12>12pm</option>
+                  <option value=13>1pm</option>
+                  <option value=14>2pm</option>
+                  <option value=15>3pm</option>
+                  <option value=16>4pm</option>
+                  <option value=17>5pm</option>
+                </select>
+                <!-- <input type="time" class="form-control" id="bookStart" name="bookStart"> -->
               </div>
 
 
               <div class="col-lg-4">
                 <label for="bookEnd">End:</label>
-                <input type="time" class="form-control" id="bookEnd" name="bookEnd">
+                <select id="bookEnd" class="form-select">
+                  <option value=10 selected>10am</option>
+                  <option value=11>11am</option>
+                  <option value=12>12pm</option>
+                  <option value=13>1pm</option>
+                  <option value=14>2pm</option>
+                  <option value=15>3pm</option>
+                  <option value=16>4pm</option>
+                  <option value=17>5pm</option>
+                  <option value=18>6pm</option>
+                </select>
+                <!-- <input type="time" class="form-control" id="bookEnd" name="bookEnd"> -->
               </div>
             </div>
 

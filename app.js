@@ -258,46 +258,48 @@ app.post("/tutoring/request", function(req,res){
     comments : req.body.bookComments
   }
 
-  updateDatabase(form_data);
+  console.log(form_data);
 
-  var split_date = form_data.date.split('-');
-  var split_start = form_data.start_time.split(':')
-  var split_end = form_data.end_time.split(':')
-
-  let startDateTime = split_date[0] + '-' + split_date[1] + '-' + split_date[2] + 'T' + split_start[0] + ':00:00.000' + TIMEOFFSET;
-
-  let startDate = new Date(Date.parse(startDateTime));;
-
-  let endDateTime = split_date[0] + '-' + split_date[1] + '-' + split_date[2] + 'T' + split_end[0] + ':00:00.000' + TIMEOFFSET;
-
-  let endDate = new Date(Date.parse(endDateTime));;
-
-  //Event for Google Calendar
-  let event = {
-      'summary': `Pending.`,
-      'start': {
-          'dateTime': startDate,
-          'timeZone': 'Canada/Eastern'
-      },
-      'end': {
-          'dateTime': endDate,
-          'timeZone': 'Canada/Eastern'
-      },
-      'visibility' : "public"
-  };
-
-  insertEvent(event)
-      .then((res) => {
-          console.log(res);
-          if( res == 1 ){
-            console.log("Event created.")
-          }
-      })
-      .catch((err) => {
-          console.log(err);
-      });
-
-
+  // updateDatabase(form_data);
+  //
+  // var split_date = form_data.date.split('-');
+  // var split_start = form_data.start_time.split(':')
+  // var split_end = form_data.end_time.split(':')
+  //
+  // let startDateTime = split_date[0] + '-' + split_date[1] + '-' + split_date[2] + 'T' + split_start[0] + ':00:00.000' + TIMEOFFSET;
+  //
+  // let startDate = new Date(Date.parse(startDateTime));;
+  //
+  // let endDateTime = split_date[0] + '-' + split_date[1] + '-' + split_date[2] + 'T' + split_end[0] + ':00:00.000' + TIMEOFFSET;
+  //
+  // let endDate = new Date(Date.parse(endDateTime));;
+  //
+  // //Event for Google Calendar
+  // let event = {
+  //     'summary': `Pending.`,
+  //     'start': {
+  //         'dateTime': startDate,
+  //         'timeZone': 'Canada/Eastern'
+  //     },
+  //     'end': {
+  //         'dateTime': endDate,
+  //         'timeZone': 'Canada/Eastern'
+  //     },
+  //     'visibility' : "public"
+  // };
+  //
+  // insertEvent(event)
+  //     .then((res) => {
+  //         console.log(res);
+  //         if( res == 1 ){
+  //           console.log("Email sent.")
+  //         }
+  //     })
+  //     .catch((err) => {
+  //         console.log(err);
+  //     });
+  //
+  //
   res.redirect('/tutoring#schedule')
 })
 
