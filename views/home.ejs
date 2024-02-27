@@ -21,7 +21,7 @@
 </section>
 
 
-<!-- Features -->
+<!-- About me -->
 <!--     -->
 <section id="about-me">
   <div class="container-fluid">
@@ -37,18 +37,27 @@
   </div>
 </section>
 
+
+
+<!-- Projects-->
+<!-- -->
 <section id="projects">
   <div class="container-fluid">
     <h2>Projects</h2>
-    <ul>
-      <li><a href="/capstone" class='project-link'><button type="button" class="btn btn-light">Finding a Location for a Tutoring Centre.</button></a>
-      <p>The goal was to use publicly available data about schools in Ontario, with respect to existing tutoring services, to determine where may be the best place to establish a tutoring centre. It was written in Python using Jupyter Notebooks. It uses common data analysis libraries such as numpy, pandas, matplotlib and scikit-learn to handle data, plot maps and cluster results. The project first shows the process done 'manually' within Mississauga and is then automated to handle an input of multiple city names and output the resulting map.</p>
-      </li>
 
-      <li><a href="/tutoring" class='project-link'><button type="button" class="btn btn-light">Prime Learning booking form.</button></a>
-      <p>The other side to this website is used for my freelance tutoring. Clients are able to book appointments according to the displayed schedule. Google's API is used to read and write to the calendar as well as write emails internally to notify of new bookings. The information in the booking is then extracted and transformed to be transfered to a MongoDB database under different tables to be used for analysis.</p>
-      </li>
-    </ul>
+      <div class="project rounded">
+        <a href="/tutoring" class='project-link'><button type="button project-button" class="btn btn-light">Prime Learning booking form.</button></a>
+        <p class ="project-text">The other side to this website is used for my freelance tutoring. Clients are able to book appointments according to the displayed schedule. Google's API is used to read and write to the calendar as well as write emails internally to notify of new bookings. The information in the booking is then extracted and transformed to be transfered to a MongoDB database under different tables to be used for analysis.</p>
+      </div>
+
+
+      <div class="project rounded">
+        <a href="/capstone" class='project-link'><button type="button project-button" class="btn btn-light">Finding a Location for a Tutoring Centre.</button></a>
+        <p class ="project-text" >The goal was to use publicly available data about schools in Ontario, with respect to existing tutoring services, to determine where may be the best place to establish a tutoring centre. It was written in Python using Jupyter Notebooks. It uses common data analysis libraries such as numpy, pandas, matplotlib and scikit-learn to handle data, plot maps and cluster results. The project first shows the process done 'manually' within Mississauga and is then automated to handle an input of multiple city names and output the resulting map.</p>
+      </div>
+
+
+
   </div>
 
 </section>
