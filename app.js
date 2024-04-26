@@ -208,8 +208,8 @@ async function updateDatabase(form_data){
   const newSession = Session({
     sessionID: sessionID,
     date: form_data.date,
-    startTime: parseInt(form_data.start_time.split(':')[0]),
-    endTime: parseInt(form_data.end_time.split(':')[0]),
+    startTime: parseInt(form_data.start_time),//.split(':')[0]),
+    endTime: parseInt(form_data.end_time),//.split(':')[0]),
     studentID: studentID,
     tutorID: 1,
     courseID: courseID,
@@ -260,46 +260,59 @@ app.post("/tutoring/request", function(req,res){
 
   console.log(form_data);
 
-  // updateDatabase(form_data);
-  //
-  // var split_date = form_data.date.split('-');
-  // var split_start = form_data.start_time.split(':')
-  // var split_end = form_data.end_time.split(':')
-  //
-  // let startDateTime = split_date[0] + '-' + split_date[1] + '-' + split_date[2] + 'T' + split_start[0] + ':00:00.000' + TIMEOFFSET;
-  //
-  // let startDate = new Date(Date.parse(startDateTime));;
-  //
-  // let endDateTime = split_date[0] + '-' + split_date[1] + '-' + split_date[2] + 'T' + split_end[0] + ':00:00.000' + TIMEOFFSET;
-  //
-  // let endDate = new Date(Date.parse(endDateTime));;
-  //
-  // //Event for Google Calendar
-  // let event = {
-  //     'summary': `Pending.`,
-  //     'start': {
-  //         'dateTime': startDate,
-  //         'timeZone': 'Canada/Eastern'
-  //     },
-  //     'end': {
-  //         'dateTime': endDate,
-  //         'timeZone': 'Canada/Eastern'
-  //     },
-  //     'visibility' : "public"
-  // };
-  //
-  // insertEvent(event)
-  //     .then((res) => {
-  //         console.log(res);
-  //         if( res == 1 ){
-  //           console.log("Email sent.")
-  //         }
-  //     })
-  //     .catch((err) => {
-  //         console.log(err);
-  //     });
-  //
-  //
+  if( form_data.comments != 'test'){
+    updateDatabase(form_data);
+  }
+
+  var split_date = form_data.date.split('-');
+
+  var start_string = "";
+
+  if (form_data.start_time == 9){
+    start_string = "09";
+  }
+  else{
+    start_string = form_data.start_time.toString();
+  }
+
+  var end_string = form_data.end_time.toString();
+
+  let startDateTime = split_date[0] + '-' + split_date[1] + '-' + split_date[2] + 'T' + start_string + ':00:00.000' + TIMEOFFSET;
+
+  let startDate = new Date(Date.parse(startDateTime));
+
+  let endDateTime = split_date[0] + '-' + split_date[1] + '-' + split_date[2] + 'T' + end_string + ':00:00.000' + TIMEOFFSET;
+
+  let endDate = new Date(Date.parse(endDateTime));
+
+  console.log(start_string, end_string, startDateTime, endDateTime, startDate, endDate);
+
+  //Event for Google Calendar
+  let event = {
+      'summary': `Pending.`,
+      'start': {
+          'dateTime': startDate,
+          'timeZone': 'Canada/Eastern'
+      },
+      'end': {
+          'dateTime': endDate,
+          'timeZone': 'Canada/Eastern'
+      },
+      'visibility' : "public"
+  };
+
+  insertEvent(event)
+      .then((res) => {
+          console.log(res);
+          if( res == 1 ){
+            console.log("Email sent.")
+          }
+      })
+      .catch((err) => {
+          console.log(err);
+      });
+
+
   res.redirect('/tutoring#schedule')
 })
 
